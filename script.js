@@ -1,13 +1,13 @@
 $(document).ready(function () {
   // test flag
-  const test = false;
+  var test = false;
 
   // get times from moment
-  const now = moment().format("MMMM Do YYYY");
+  var now = moment().format("MMMM Do YYYY");
 
   // commented out for test in non-standard hours
-  let nowHour24 = moment().format("H");
-  let nowHour12 = moment().format("h");
+  var nowHour24 = moment().format("H");
+  var nowHour12 = moment().format("h");
 
   // set times for tesitng after hours
   if (test) {
@@ -15,16 +15,16 @@ $(document).ready(function () {
     nowHour12 = 1;
   }
 
-  let $dateHeading = $("#navbar-subtitle");
+  var $dateHeading = $("#navbar-subtitle");
   $dateHeading.text(now);
 
   // using font awesome icon https://fontawesome.com/license
   // change description here - none
-  const saveIcon = "./images/save-regular.svg";
+  var saveIcon = "./images/save-regular.svg";
 
   // Get stored todos from localStorage
   // Parsing the JSON string to an object
-  let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
+  var storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
 
   if (test) {
     console.log(storedPlans);
@@ -45,7 +45,7 @@ $(document).ready(function () {
   }
 
   // set variable referencing planner element
-  let $plannerDiv = $("#plannerContainer");
+  var $plannerDiv = $("#plannerContainer");
   // clear existing elements
   $plannerDiv.empty();
 
@@ -54,28 +54,28 @@ $(document).ready(function () {
   }
 
   // build calendar by row for fix set of hours
-  for (let hour = 8; hour <= 17; hour++) {
+  for (var hour = 8; hour <= 17; hour++) {
     // index for array use offset from hour
-    let index = hour - 8;
+    var index = hour - 8;
 
     // build row components
-    let $rowDiv = $("<div>");
+    var $rowDiv = $("<div>");
     $rowDiv.addClass("row");
     $rowDiv.addClass("plannerRow");
     $rowDiv.attr("hour-index", hour);
 
     // Start building Time box portion of row
-    let $col2TimeDiv = $("<div>");
+    var $col2TimeDiv = $("<div>");
     $col2TimeDiv.addClass("col-md-2");
 
     // create timeBox element (contains time)
-    const $timeBoxSpn = $("<span>");
+    var $timeBoxSpn = $("<span>");
     // can use this to get value
     $timeBoxSpn.attr("class", "timeBox");
 
     // format hours for display
-    let displayHour = 0;
-    let ampm = "";
+    var displayHour = 0;
+    var ampm = "";
     if (hour > 12) {
       displayHour = hour - 12;
       ampm = "pm";
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     // START building input portion of row
     // build row components
-    let $dailyPlanSpn = $("<input>");
+    var $dailyPlanSpn = $("<input>");
 
     $dailyPlanSpn.attr("id", `input-${index}`);
     $dailyPlanSpn.attr("hour-index", index);
@@ -105,7 +105,7 @@ $(document).ready(function () {
     $dailyPlanSpn.val(planTextArr[index]);
 
     // create col to control width
-    let $col9IptDiv = $("<div>");
+    var $col9IptDiv = $("<div>");
     $col9IptDiv.addClass("col-md-9");
 
     // add col width and row component to row
@@ -114,10 +114,10 @@ $(document).ready(function () {
     // STOP building Time box portion of row
 
     // START building save portion of row
-    let $col1SaveDiv = $("<div>");
+    var $col1SaveDiv = $("<div>");
     $col1SaveDiv.addClass("col-md-1");
 
-    let $saveBtn = $("<i>");
+    var $saveBtn = $("<i>");
     $saveBtn.attr("id", `saveid-${index}`);
     $saveBtn.attr("save-id", index);
     $saveBtn.attr("class", "far fa-save saveIcon");
@@ -168,10 +168,10 @@ $(document).ready(function () {
       console.log("click pta before " + planTextArr);
     }
 
-    let $index = $(this).attr("save-id");
+    var $index = $(this).attr("save-id");
 
-    let inputId = "#input-" + $index;
-    let $value = $(inputId).val();
+    var inputId = "#input-" + $index;
+    var $value = $(inputId).val();
 
     planTextArr[$index] = $value;
 
@@ -202,7 +202,7 @@ $(document).ready(function () {
 
     // neeed to check for save button
 
-    let i = $(this).attr("hour-index");
+    var i = $(this).attr("hour-index");
 
     // add shawdow pulse class
     $(`#saveid-${i}`).addClass("shadowPulse");
